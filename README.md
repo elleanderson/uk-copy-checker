@@ -71,7 +71,7 @@ Add this to a workflow and every pull request gets inline notes on the lines tha
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: elleanderson/uk-copy-checker@v1
+- uses: elleanderson/uk-copy-checker@v1.0.0
   with:
     paths: docs/ README.md
     disable: sentence-length
