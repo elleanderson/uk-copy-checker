@@ -155,9 +155,9 @@ AI_PHRASES = {
     "robust": "Say what makes it strong.",
     "cutting-edge": "Say what is new about it.",
     "harness the": "Say \"use\".",
-    "not only": "Check for the \"not only X, but Y\" pattern. It reads as machine-made.",
 }
 AI_PATTERN = re.compile("|".join(rf"\b{re.escape(p)}" for p in sorted(AI_PHRASES, key=len, reverse=True)), re.IGNORECASE)
+NOT_ONLY = re.compile(r"\bnot only\b[^.!?]*?\bbut\b", re.IGNORECASE)
 
 
 def _quoted(text: str, m: re.Match) -> bool:
@@ -167,6 +167,8 @@ def _quoted(text: str, m: re.Match) -> bool:
 
 
 def ai_phrases(text: str, line_no: int, **_) -> Iterator[Issue]:
+    for m in NOT_ONLY.finditer(text):
+        yield _issue("ai-phrases", line_no, m, text, "The \"not only X, but Y\" pattern reads as machine-made. Say both things plainly.")
     for m in AI_PATTERN.finditer(text):
         if _quoted(text, m):
             continue

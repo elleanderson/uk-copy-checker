@@ -95,3 +95,8 @@ def test_comma_before_a_new_clause_is_fine():
 
 def test_inline_code_at_the_end_of_a_sentence():
     assert "stranded-preposition" not in rules("Install it with `pip install ukcopy`.")
+
+
+def test_not_only_but_pattern():
+    assert "ai-phrases" in rules("It's not only fast, but it's also kind.")
+    assert "ai-phrases" not in rules("Useful for leaders, not only engineers.")
