@@ -70,7 +70,7 @@ PHRASAL_OK = {
     "join in", "hand in", "carry on", "move on", "hold on", "take on", "go on", "come on", "log on",
     "switch on", "build on", "turn on", "lean on", "count on", "rely on", "dawn on", "get on", "plug in",
     "opt in", "drop in", "settle in", "sink in", "break through", "follow through", "come through",
-    "get through", "see through", "pull through", "stand by", "come by", "get by", "drop by", "pass by",
+    "get through", "see through", "pull through", "slips through", "slip through", "stand by", "come by", "get by", "drop by", "pass by",
     "put up with", "look forward to", "opt out of",
 }
 SENTENCE_END = re.compile(r"[^.!?]+[.!?]")
