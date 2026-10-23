@@ -1,0 +1,4 @@
+# Copy to .ukcopy.toml in your project (or use [tool.ukcopy] in pyproject.toml)
+disable = ["sentence-length"]
+max-sentence-words = 28
+allow = ["Center for Executive Coaching"]   # proper nouns that keep their US spelling

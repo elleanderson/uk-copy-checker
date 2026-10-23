@@ -1,0 +1,30 @@
+name: UK Copy Checker
+description: Check Markdown, text and HTML against a UK English house style, with inline pull request annotations.
+author: Elle Anderson
+branding:
+  icon: feather
+  color: green
+inputs:
+  paths:
+    description: Space-separated files or folders to check
+    default: "."
+  disable:
+    description: Space-separated rule names to turn off
+    default: ""
+  fail-on-issues:
+    description: Fail the job when issues are found
+    default: "true"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: bash
+      run: pip install --quiet "${{ github.action_path }}"
+    - shell: bash
+      run: |
+        args=""
+        for r in ${{ inputs.disable }}; do args="$args --disable $r"; done
+        if [ "${{ inputs.fail-on-issues }}" != "true" ]; then args="$args --no-fail"; fi
+        ukcopy check ${{ inputs.paths }} --format github $args
